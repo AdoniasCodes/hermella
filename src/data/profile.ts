@@ -8,6 +8,7 @@ export interface ArchitectProfile {
   phone: string
   statusAvailability: string
   philosophyStatement: string
+  signatureQuote: string
   portraitImage: string
   bioParagraphs: string[]
   experience: ExperienceItem[]
@@ -36,15 +37,17 @@ export const architectProfile: ArchitectProfile = [
     phone: '+251 91 123 4567',
     portraitImage: 'hermella.png',
     statusAvailability: 'Available for Full-time Studio Roles, Project Collaborations & Competitions',
+    signatureQuote:
+      'A building should not fight its climate or pretend to be weightless. When we honor the raw weight of stone and the movement of the sun, architecture achieves quiet permanence.',
     philosophyStatement:
-      'Architecture exists in the quiet calibration between matter and light. I pursue an architecture of rigorous reduction — stripped of decorative superfluity, deeply attuned to climate and topography, and constructed from materials that age with grace and dignity.',
+      'Architecture exists in the quiet calibration between matter and light. I pursue an architecture of rigorous reduction, stripped of decorative superfluity, deeply attuned to climate and topography, and constructed from materials that age with grace and dignity.',
     bioParagraphs: [
-      'Graduated with honors in Architecture in 2024, my practice is grounded in a deep reverence for tectonic clarity, vernacular intelligence, and environmental thermodynamics. Over the past two years, I have worked across diverse typologies — from bespoke alpine residential sanctuaries to adaptive industrial heritage conversions and ecological research prototypes.',
+      'Graduated with honors in Architecture in 2024, my practice is grounded in a deep reverence for tectonic clarity, vernacular intelligence, and environmental thermodynamics. Over the past two years, I have worked across diverse typologies, from bespoke alpine residential sanctuaries to adaptive industrial heritage conversions and ecological research prototypes.',
       'My design methodology begins with rigorous analytical sketching and physical massing models, advancing through parametric daylight simulation, bioclimatic envelope optimization, and precision working documentation. I believe the true test of architecture lies not in render imagery, but in the tactile reality of the 1:1 construction joint and the enduring dignity of the space over time.'
     ],
     experience: [
       {
-        period: '2024 — Present',
+        period: '2024–Present',
         role: 'Junior Architectural Designer',
         studio: 'Studio Tectonica / Atelier A',
         location: 'Addis Ababa',
@@ -57,7 +60,7 @@ export const architectProfile: ArchitectProfile = [
         ]
       },
       {
-        period: '2023 — 2024',
+        period: '2023–2024',
         role: 'Architectural Intern & Physical Model Fabricator',
         studio: 'Urban Context Lab',
         location: 'Addis Ababa',
@@ -72,7 +75,7 @@ export const architectProfile: ArchitectProfile = [
     ],
     education: [
       {
-        period: '2019 — 2024',
+        period: '2019–2024',
         degree: 'Bachelor of Architecture (B.Arch, 5-Year Professional Degree)',
         institution: 'EiABC (Ethiopian Institute of Architecture, Building Construction and City Development)',
         location: 'Addis Ababa University',
@@ -101,7 +104,7 @@ export const architectProfile: ArchitectProfile = [
     awardsAndExhibitions: [
       {
         year: 2024,
-        title: 'National Architectural Thesis Prize — Commendation',
+        title: 'National Architectural Thesis Prize: Commendation',
         organization: 'Association of Ethiopian Architects (AEA)',
         description: 'Recognized for outstanding integration of passive bioclimatic systems with vernacular earth construction.'
       },

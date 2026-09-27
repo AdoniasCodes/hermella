@@ -45,7 +45,7 @@ export const PdfLookbookPage: React.FC<PdfLookbookPageProps> = ({ projects, onBa
           {/* Top metadata */}
           <div className="flex items-center justify-between font-mono text-xs text-neutral-500 uppercase tracking-widest border-b border-black pb-4">
             <span>SELECTED ARCHITECTURAL WORKS</span>
-            <span>2023 — 2025</span>
+            <span>2023–2025</span>
           </div>
 
           {/* Central Title */}
@@ -119,7 +119,7 @@ export const PdfLookbookPage: React.FC<PdfLookbookPageProps> = ({ projects, onBa
                 {architectProfile.experience.map((exp, idx) => (
                   <div key={idx} className="space-y-1 font-sans text-xs">
                     <div className="flex justify-between font-semibold text-neutral-900">
-                      <span>{exp.role} — {exp.studio}</span>
+                      <span>{exp.role}, {exp.studio}</span>
                       <span className="font-mono text-neutral-500">{exp.period}</span>
                     </div>
                     <p className="text-neutral-600">{exp.description}</p>
@@ -214,7 +214,7 @@ export const PdfLookbookPage: React.FC<PdfLookbookPageProps> = ({ projects, onBa
                     />
                   </div>
                   <div className="font-mono text-[10px] text-neutral-400">
-                    Fig {project.id}.1 — Exterior Spatial Perspective
+                    Fig {project.id}.1: Exterior Spatial Perspective
                   </div>
                 </div>
 
@@ -229,7 +229,7 @@ export const PdfLookbookPage: React.FC<PdfLookbookPageProps> = ({ projects, onBa
                     )}
                   </div>
                   <div className="flex items-center justify-between font-mono text-[10px] text-neutral-400">
-                    <span>Fig {project.id}.2 — {project.drawings[0]?.title}</span>
+                    <span>Fig {project.id}.2: {project.drawings[0]?.title}</span>
                     <span className="font-semibold text-neutral-800">{project.drawings[0]?.scale}</span>
                   </div>
                 </div>

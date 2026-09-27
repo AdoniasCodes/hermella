@@ -57,7 +57,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenPdfMode }) => {
           </div>
 
           {/* Architectural Manifesto */}
-          <div className="p-8 bg-[#F4F1EA] rounded-xs space-y-4 border border-neutral-200/60">
+          <div className="p-8 bg-[#E9E7E1] rounded-xs space-y-4 border border-neutral-200/60">
             <div className="font-mono text-xs uppercase tracking-widest text-neutral-500">
               Architectural Manifesto
             </div>

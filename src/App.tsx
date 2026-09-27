@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react'
+import { HomePage } from './pages/HomePage'
+import { initSmoothScroll, scrollToElement, scrollToTop } from './lib/scroll'
 import { projects } from './data/projects'
 import type { Project } from './types'
 import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
-import { WorksPage } from './pages/WorksPage'
 import { ProjectDetail } from './components/ProjectDetail'
 import { AboutPage } from './pages/AboutPage'
-import { ArchivePage } from './pages/ArchivePage'
 import { ContactPage } from './pages/ContactPage'
 import { PdfLookbookPage } from './pages/PdfLookbookPage'
 
 export function App() {
-  const [currentTab, setCurrentTab] = useState<string>('works')
+  const [currentTab, setCurrentTab] = useState<string>('home')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isPdfMode, setIsPdfMode] = useState<boolean>(false)
 
@@ -36,14 +36,19 @@ export function App() {
       }
 
       setIsPdfMode(false)
-      if (['works', 'archive', 'about', 'contact'].includes(hash)) {
+      if (['about', 'contact'].includes(hash)) {
         setCurrentTab(hash)
-        setSelectedProject(null)
+      } else if (['work', 'works', 'archive'].includes(hash)) {
+        // Few enough projects that the home gallery is the works page
+        setCurrentTab('home')
+        setTimeout(() => scrollToElement(document.getElementById('work')), 120)
       } else {
-        setCurrentTab('works')
-        setSelectedProject(null)
+        setCurrentTab('home')
       }
+      setSelectedProject(null)
     }
+
+    initSmoothScroll()
 
     // Initial check
     handleHashChange()
@@ -57,35 +62,40 @@ export function App() {
     setCurrentTab('project')
     setIsPdfMode(false)
     window.location.hash = `project/${project.slug}`
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    scrollToTop()
   }
 
   const handleBackToWorks = () => {
     setSelectedProject(null)
-    setCurrentTab('works')
+    setCurrentTab('home')
     setIsPdfMode(false)
-    window.location.hash = 'works'
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.location.hash = 'work'
   }
 
   const handleNavigateTab = (tab: string) => {
-    setCurrentTab(tab)
     setSelectedProject(null)
     setIsPdfMode(false)
-    window.location.hash = tab
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (tab === 'work') {
+      if (currentTab === 'home' && !selectedProject) scrollToElement(document.getElementById('work'))
+      window.location.hash = 'work'
+      setCurrentTab('home')
+      return
+    }
+    setCurrentTab(tab)
+    window.location.hash = tab === 'home' ? '' : tab
+    scrollToTop()
   }
 
   const handleOpenPdfMode = () => {
     setIsPdfMode(true)
     window.location.hash = 'pdf-lookbook'
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    scrollToTop()
   }
 
   const handleClosePdfMode = () => {
     setIsPdfMode(false)
     window.location.hash = currentTab === 'project' && selectedProject ? `project/${selectedProject.slug}` : currentTab
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    scrollToTop()
   }
 
   // If in dedicated PDF Lookbook mode
@@ -94,14 +104,14 @@ export function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-[#FAF9F6] text-[#1C1B1A]">
+    <div className="min-h-screen flex flex-col justify-between bg-[#F3F2EE] text-[#121211]">
       <Navbar
         currentTab={currentTab}
         setCurrentTab={handleNavigateTab}
         onOpenPdfMode={handleOpenPdfMode}
       />
 
-      <main className="flex-1">
+      <main className={`flex-1 ${currentTab === 'home' && !selectedProject ? '' : 'pt-20 md:pt-24 pb-24'}`}>
         {selectedProject ? (
           <ProjectDetail
             project={selectedProject}
@@ -109,15 +119,12 @@ export function App() {
             onBack={handleBackToWorks}
             onSelectProject={handleSelectProject}
           />
-        ) : currentTab === 'works' ? (
-          <WorksPage
+        ) : currentTab === 'home' ? (
+          <HomePage
             projects={projects}
             onSelectProject={handleSelectProject}
-          />
-        ) : currentTab === 'archive' ? (
-          <ArchivePage
-            projects={projects}
-            onSelectProject={handleSelectProject}
+            onNavigate={handleNavigateTab}
+            onOpenPdfMode={handleOpenPdfMode}
           />
         ) : currentTab === 'about' ? (
           <AboutPage onOpenPdfMode={handleOpenPdfMode} />

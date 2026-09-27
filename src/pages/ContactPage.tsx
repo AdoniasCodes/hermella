@@ -64,7 +64,7 @@ export const ContactPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="border border-neutral-200 bg-[#F4F1EA] p-6 rounded-xs space-y-3">
+          <div className="border border-neutral-200 bg-[#E9E7E1] p-6 rounded-xs space-y-3">
             <div className="font-mono text-xs text-neutral-800 font-semibold uppercase tracking-wider">
               Studio & Practice Status
             </div>

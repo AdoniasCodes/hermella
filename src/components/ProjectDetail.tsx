@@ -24,7 +24,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({
 
   // Combined image list: Hero + Gallery
   const allImages = [
-    { url: project.heroImage, caption: `${project.title} — Primary Exterior Perspective` },
+    { url: project.heroImage, caption: `${project.title}: primary exterior perspective` },
     ...project.galleryImages,
   ]
 
@@ -52,7 +52,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({
           className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-neutral-600 hover:text-black transition-colors cursor-pointer"
         >
           <ArrowLeft size={14} />
-          <span>Return to Selected Works</span>
+          <span>Back to all work</span>
         </button>
 
         <div className="flex items-center gap-4 font-mono text-xs text-neutral-400">
