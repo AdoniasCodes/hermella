@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Space Mono", monospace;
+  
+  --color-sand-50: #FAF9F6;
+  --color-sand-100: #F4F1EA;
+  --color-sand-200: #EAE5D9;
+  --color-sand-300: #DDD5C3;
+  --color-charcoal-900: #121211;
+  --color-charcoal-800: #1C1B1A;
+  --color-charcoal-700: #2E2D2B;
+  --color-charcoal-500: #686561;
+  --color-stone-muted: #8E8B85;
+}
+
+@layer base {
+  * {
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    color: #1c1b1a;
+    background-color: #faf9f6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #e5e0d4;
+    color: #121211;
+  }
+}
+
+/* Print Stylesheet for architectural portfolio PDF export */
+@media print {
+  .no-print, nav, header button, footer .back-to-top {
+    display: none !important;
+  }
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  .page-break {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+  .avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
+/* Subtle architectural grid pattern background helper */
+.arch-grid-bg {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
