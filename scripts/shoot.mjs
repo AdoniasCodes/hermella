@@ -5,7 +5,7 @@ const stops = (process.argv[6]||'0').split(',').map(Number)
 const browser = await chromium.launch({ channel: 'chrome', headless: true, args:['--use-angle=metal','--enable-gpu','--ignore-gpu-blocklist'] })
 const page = await (await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 1 })).newPage()
 const errs=[]; page.on('console', m => { if (m.type()==='error'||m.type()==='warning') errs.push(m.text()) }); page.on('pageerror', e=>errs.push('PAGEERR '+e.message))
-await page.goto(url, { waitUntil: 'networkidle' }); await page.waitForTimeout(2500)
+await page.goto(url, { waitUntil: 'load' }); await page.waitForTimeout(2500)
 for (const y of stops) {
   await page.evaluate(y => window.scrollTo(0, y * window.innerHeight), y)
   await page.waitForTimeout(1800)
